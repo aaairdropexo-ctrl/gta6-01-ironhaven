@@ -37,6 +37,10 @@ Ironhaven is one compact, vertical port city on a hill — Wire Hill in the west
 
 Built with three.js (vendored under `game/vendor/`), plain ES modules, no external requests. The game is `game/` — `main.ts` hands it in with `dossier.json`.
 
+## Screenshots
+
+The four screenshots (`cover`, `chase`, `defend`, `reward`) are real game states staged by `game/src/shots.js` from the same rules a player plays by, with a fixed seed so each frame is repeatable. The defend frame shows the radio van's parabolic dish — a shallow bowl with a feed arm and horn, not a solid dome — so it reads as a dish, not a balloon.
+
 ## Run the entry program
 
 ```sh
