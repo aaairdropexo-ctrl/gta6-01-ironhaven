@@ -8,6 +8,9 @@
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// The screenshots handed in are the four staged shots (cover, chase, defend,
+// reward) as defined in SHOTS in game/src/config.js — exactly four, each
+// under 256 KiB, or the scorer refuses the entry.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
