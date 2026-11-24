@@ -49,7 +49,9 @@ export function createAdaptiveCamera(ctx) {
       fy + height + Math.sin(pitch) * dist,
       fz + Math.cos(yaw) * dist * Math.cos(pitch),
     );
-    // keep the camera out of the ground on the hill
+    // keep the camera out of the ground on the hill — the desired height
+    // is the mode height, but on Wire Hill the ground itself rises to 22 m,
+    // so without this clamp the camera would sink into the slope.
     const ground = ctx.world.heightAt(desired.x, desired.z);
     desired.y = Math.max(desired.y, ground + 0.7);
     const k = 1 - Math.exp(-dt * (mode === 'drive' ? 5 : 8));
