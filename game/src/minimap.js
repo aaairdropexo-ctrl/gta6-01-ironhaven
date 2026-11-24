@@ -28,6 +28,9 @@ export function createDistrictMinimap(ctx) {
 
   function update() {
     g.clearRect(0, 0, W, H);
+    // the dark plate is deliberate: the minimap sits in the bottom-right
+    // corner and must read as a dark panel against the bright yard, so the
+    // frame's genre signals (wanted stars + minimap) stay visible.
     g.fillStyle = '#11151a';
     g.fillRect(0, 0, W, H);
     // the channel water
