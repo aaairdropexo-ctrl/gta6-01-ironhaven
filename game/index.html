@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IRONHAVEN — a vertical port city, one manifest, one broadcast</title>
+<link rel="stylesheet" href="./styles.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<canvas id="game" aria-label="Ironhaven: play Mara, a port workers' co-op courier, take the evidence hauler, break the bridge blockade, and broadcast the Rourke ledger from the radio van"></canvas>
+<div id="vignette"></div>
+
+<div id="objective" class="plate">
+  <div id="objective-title">IRONHAVEN</div>
+  <div id="objective-text">Press ENTER to start</div>
+  <div id="objective-detail">A port city on a hill. One manifest. One hardcase. One broadcast.</div>
+</div>
+
+<div id="wanted" class="plate" style="display:none">
+  <div id="wanted-label">WANTED</div>
+  <div id="wanted-stars">★★★☆☆</div>
+</div>
+
+<div id="broadcast" class="plate" style="display:none">
+  <div id="broadcast-label">BROADCASTING — HOLD THE VAN</div>
+  <div id="broadcast-bar"><div id="broadcast-fill"></div></div>
+  <div id="broadcast-pct">0% LIVE</div>
+</div>
+
+<div id="dispatch" class="plate" style="display:none">
+  <div id="dispatch-label">PORT POLICE — <span id="dispatch-count">0</span> UNITS</div>
+  <div id="dispatch-list"></div>
+</div>
+
+<div id="radio" class="plate" style="display:none">88.7 COMMUNITY RADIO</div>
+
+<div id="health" class="plate">
+  <div id="health-row"><span id="health-label">MARA</span><span id="health-num">100</span></div>
+  <div id="health-bar"><div id="health-fill"></div></div>
+  <div id="ammo-text">PISTOL 12 / 60</div>
+</div>
+
+<div id="speed" class="plate" style="display:none">
+  <div><span id="speed-num">0</span><span id="speed-unit"> km/h</span></div>
+  <div id="integrity-text">HAULER 100%</div>
+</div>
+
+<canvas id="minimap" width="180" height="180" aria-label="District map of Ironhaven"></canvas>
+
+<div id="prompt" class="plate" style="display:none"></div>
+<div id="subtitle"></div>
+<div id="crosshair" style="display:none"><span></span></div>
+
+<div id="chapter-card" style="display:none">
+  <div id="chapter-kicker"></div>
+  <div id="chapter-title"></div>
+  <div id="chapter-objective"></div>
+</div>
+
+<div id="title-screen" class="overlay">
+  <div class="overlay-inner">
+    <div class="title-kicker">A PORT CITY ON A HILL</div>
+    <h1>IRONHAVEN</h1>
+    <p class="title-story">Mara runs packages for the port workers' co-op. This morning the manifest came back wrong. One sealed hardcase with her name on it, and Chief Rourke's men already at the gate. Take the hauler. Break the bridge. Put his ledger on every screen in Ironhaven.</p>
+    <p class="title-start">PRESS ENTER TO START</p>
+    <div class="controls">
+      <span>W A S D — move / drive</span><span>SHIFT — sprint</span><span>MOUSE — look</span><span>RIGHT MOUSE / Q — aim</span><span>CLICK — shoot</span><span>R — reload</span><span>E — enter / hijack</span><span>P — pause</span>
+    </div>
+  </div>
+</div>
+
+<div id="pause-screen" class="overlay" style="display:none">
+  <div class="overlay-inner">
+    <h2>PAUSED</h2>
+    <p>Press P to resume.</p>
+  </div>
+</div>
+
+<div id="fail-screen" class="overlay" style="display:none">
+  <div class="overlay-inner">
+    <h2>CHAPTER FAILED</h2>
+    <p id="fail-reason"></p>
+    <p class="title-start">PRESS ENTER TO RETRY THE CHAPTER</p>
+  </div>
+</div>
+
+<div id="complete-screen" class="overlay" style="display:none">
+  <div class="overlay-inner">
+    <div class="title-kicker">EVIDENCE LIVE</div>
+    <h2>THE LEDGER IS PUBLIC</h2>
+    <ul id="complete-list"></ul>
+    <p class="title-start">PRESS ENTER TO KEEP PLAYING — FREE ROAM</p>
+  </div>
+</div>
+
+<p id="status" role="status" aria-live="polite"></p>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
