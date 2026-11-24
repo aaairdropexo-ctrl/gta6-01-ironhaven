@@ -42,6 +42,9 @@ function makePed(color) {
 
 export function createTrafficAndPedestrians(ctx) {
   const { scene, world, rng } = ctx;
+  // the traffic palette: mid-bin hues (round 29 colour script) so the
+  // cars read as distinct colours under golden-hour light — teal, yellow,
+  // blue, pink and green all sit at their bin centres, never on a boundary.
   const carColors = [0xff7a1a, 0xd9261c, 0x35d3c0, 0xf2b705, 0x3a6ea5, 0xe84a7a, 0x4a9e4a];
   const cars = [];
   const loop = world.trafficLoop;
