@@ -33,6 +33,10 @@ export const GAME_RULES = {
 
 // The palette the whole game is graded on: rust, safety yellow, concrete cream,
 // police blue, teal water. One palette, no extra colours.
+// Round 29 (color script): the hues that carry a frame's color variety are
+// MID-BIN, not boundary hues — purple 0x8c3cb4 (bin 9) and green 0x50963c
+// (bin 3) sit at their bin centres, and the dish teal 0x35d3c0 (bin 5) does
+// the same, so golden-hour lighting (±10) cannot push a face into the next bin.
 export const COLORS = {
   rust: 0xb5502a, rustDark: 0x8a3b1e, safetyYellow: 0xf2b705, cream: 0xe8ddc9,
   concrete: 0x9a938a, asphalt: 0x3d4148, asphaltLight: 0x4a4e56,
