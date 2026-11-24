@@ -64,6 +64,8 @@ export function createWorldEffects(ctx) {
   // effects.impact() dies before capture — so no shot is ever visible in a
   // judged frame. This is frozen geometry: two crossed emissive planes
   // (a "+" star, additive, no decay), facing the camera, at the muzzle.
+  // One-shot prop: created once per staged shot, never per frame — each
+  // call adds a mesh to the scene, so the loop must never call it.
   function frozenFlash(pos, camPos) {
     const group = new THREE.Group();
     const mat = new THREE.MeshBasicMaterial({ color: 0xffd27a, transparent: true, opacity: 0.95, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending });
