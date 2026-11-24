@@ -98,7 +98,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #11151a; }
   background: rgba(10, 12, 16, 0.72); color: #F4F0E7;
   font-family: "Arial Narrow", Impact, sans-serif; text-align: center;
 }
-/* the completion panel lets the world show through behind it */
 /* the completion panel is a top banner, so the world shows below it */
 #complete-screen {
   background: rgba(10, 12, 16, 0.82);
