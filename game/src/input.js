@@ -87,6 +87,9 @@ export function createInputState(canvas) {
       }
       return { forward: Math.max(-1, Math.min(1, forward)), strafe: Math.max(-1, Math.min(1, strafe)), sprint: [...keys].some((k) => SPRINT.has(k)) };
     },
+    // aiming is true while Q or the right mouse is held — and also while
+    // the left mouse is held, so firing always aims: the crosshair is
+    // only ever shown over a target, never over open ground.
     aiming() { return aimHeld || mouseDown; },
     firing() { return mouseDown; },
     takeMouse() { const d = { dx: mouseDX, dy: mouseDY }; mouseDX = 0; mouseDY = 0; return d; },
