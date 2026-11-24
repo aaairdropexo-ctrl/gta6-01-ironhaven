@@ -7,6 +7,9 @@
 export function createPortTrustProgression(ctx) {
   const { world, vehicles } = ctx;
   const state = {
+    // trust is a flag, not a level: 0 before the broadcast, 1 after. The
+    // rewards are places (gate, garage, hauler home), not numbers, so
+    // there is nothing to count past 1.
     trust: 0, gateOpen: false, garageOpen: false, evidenceLive: false,
     haulerHome: { x: 30, z: 44, heading: Math.PI },
   };
