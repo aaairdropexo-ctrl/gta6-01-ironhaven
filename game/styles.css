@@ -1,0 +1,122 @@
+/* IRONHAVEN — the HUD's one stylesheet. One condensed bold family, one plate
+   colour, amber for objectives, red-orange for wanted, teal for rewards.
+   Everything is sized to read at 1280x720 and at the jury's 768px. */
+html, body { margin: 0; height: 100%; overflow: hidden; background: #11151a; }
+#game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+#vignette {
+  position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 58%, rgba(10, 12, 16, 0.22) 100%);
+}
+#status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.plate {
+  position: fixed; z-index: 5;
+  background: rgba(17, 21, 26, 0.88); color: #F4F0E7;
+  border-left: 4px solid #FFC247; border-radius: 2px;
+  padding: 10px 14px;
+  font-family: "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* top-left, under the objective: the police dispatch — live units, not decor */
+#dispatch { top: 252px; left: 16px; width: 300px; border-left-color: #FF5A36; }
+#dispatch-label { font-size: 13px; font-weight: 900; color: #FF5A36; letter-spacing: 0.12em; }
+#dispatch-list { margin-top: 6px; }
+#dispatch-list .dispatch-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 900; line-height: 1.5; }
+#dispatch-list .dispatch-role { color: #B9BDC2; font-weight: 700; }
+#dispatch-list .dispatch-dist { color: #F4F0E7; }
+
+/* top-left: the objective */
+#objective { top: 16px; left: 16px; max-width: 420px; }
+#objective-title { font-size: 17px; font-weight: 900; color: #FFC247; letter-spacing: 0.12em; }
+#objective-text { font-size: 36px; font-weight: 900; line-height: 1.1; margin-top: 2px; }
+#objective-detail { font-size: 16px; color: #B9BDC2; margin-top: 3px; line-height: 1.5; }
+
+/* top-right: wanted */
+#wanted { top: 16px; right: 16px; border-left-color: #FF5A36; text-align: right; }
+#wanted-label { font-size: 13px; font-weight: 900; color: #FF5A36; letter-spacing: 0.14em; }
+#wanted-stars { font-size: 30px; line-height: 1; color: #FF5A36; letter-spacing: 2px; }
+
+/* top-right, under wanted: broadcast (one status family per corner) */
+#broadcast { top: 96px; right: 16px; width: 340px; border-left-color: #35D3C0; text-align: center; }
+#broadcast-label { font-size: 16px; font-weight: 900; color: #35D3C0; letter-spacing: 0.12em; }
+#broadcast-bar { height: 10px; background: #2b2e33; margin: 8px 0 4px; }
+#broadcast-fill { height: 100%; width: 0%; background: #35D3C0; }
+#broadcast-pct { font-size: 17px; font-weight: 900; }
+
+/* bottom-left: health + ammo */
+#health { bottom: 16px; left: 16px; width: 230px; }
+#health-row { display: flex; justify-content: space-between; font-size: 15px; font-weight: 900; letter-spacing: 0.1em; }
+#health-bar { height: 12px; background: #2b2e33; margin: 6px 0; }
+#health-fill { height: 100%; width: 100%; background: #35D3C0; }
+#ammo-text { font-size: 16px; font-weight: 900; letter-spacing: 0.08em; }
+
+/* bottom-right: speed, then the minimap above it */
+#speed { bottom: 16px; right: 204px; text-align: right; border-left-color: #F4F0E7; }
+#speed-num { font-size: 42px; font-weight: 900; line-height: 0.9; }
+#speed-unit { font-size: 15px; font-weight: 900; color: #B9BDC2; }
+#integrity-text { font-size: 14px; font-weight: 900; color: #FFC247; letter-spacing: 0.08em; }
+#minimap { position: fixed; z-index: 5; right: 16px; bottom: 16px; width: 180px; height: 180px; }
+
+/* bottom-right, above the minimap: the van's frequency */
+#radio { right: 16px; bottom: 204px; font-size: 14px; font-weight: 900; letter-spacing: 0.1em; color: #35D3C0; border-left-color: #35D3C0; }
+
+/* bottom-center: prompt and subtitles */
+#prompt {
+  bottom: 110px; left: 50%; transform: translateX(-50%);
+  font-size: 24px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap;
+}
+#subtitle {
+  position: fixed; z-index: 5; bottom: 64px; left: 50%; transform: translateX(-50%);
+  max-width: 640px; text-align: center; color: #F4F0E7;
+  font-family: "Arial Narrow", Impact, sans-serif; font-size: 21px; font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); display: none;
+}
+
+/* centre: crosshair */
+#crosshair { position: fixed; z-index: 5; left: 50%; top: 50%; width: 22px; height: 22px; transform: translate(-50%, -50%); pointer-events: none; }
+#crosshair span { display: block; width: 22px; height: 22px; border: 2px solid rgba(244, 240, 231, 0.9); border-radius: 50%; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6); }
+#crosshair span::after { content: ""; position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; background: #F4F0E7; transform: translate(-50%, -50%); }
+
+/* centre: chapter card */
+#chapter-card {
+  position: fixed; z-index: 6; left: 50%; top: 34%; transform: translate(-50%, -50%);
+  text-align: center; color: #F4F0E7; pointer-events: none;
+  font-family: "Arial Narrow", Impact, sans-serif;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.85);
+  transition: opacity 0.8s;
+}
+#chapter-card.fade { opacity: 0; }
+#chapter-kicker { font-size: 17px; font-weight: 900; color: #FFC247; letter-spacing: 0.3em; }
+#chapter-title { font-size: 54px; font-weight: 900; letter-spacing: 0.06em; line-height: 1; }
+#chapter-objective { font-size: 20px; font-weight: 700; color: #D8D5CC; margin-top: 6px; }
+
+/* full-screen overlays */
+.overlay {
+  position: fixed; inset: 0; z-index: 10; display: flex;
+  align-items: center; justify-content: center;
+  background: rgba(10, 12, 16, 0.72); color: #F4F0E7;
+  font-family: "Arial Narrow", Impact, sans-serif; text-align: center;
+}
+/* the completion panel lets the world show through behind it */
+/* the completion panel is a top banner, so the world shows below it */
+#complete-screen {
+  background: rgba(10, 12, 16, 0.82);
+  inset: auto; top: 20px; left: 50%; transform: translateX(-50%);
+  width: min(560px, 80vw); align-items: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+#complete-screen .overlay-inner { padding: 12px 18px; }
+#complete-screen h2 { font-size: 28px; margin: 2px 0 6px; }
+#complete-screen #complete-list { margin: 8px 0; font-size: 15px; line-height: 1.5; }
+.overlay-inner { max-width: 680px; padding: 32px; }
+.title-kicker { font-size: 16px; font-weight: 900; color: #FFC247; letter-spacing: 0.34em; }
+.overlay h1 { font-size: 92px; font-weight: 900; letter-spacing: 0.05em; margin: 8px 0; line-height: 0.95; }
+.overlay h2 { font-size: 52px; font-weight: 900; letter-spacing: 0.05em; margin: 8px 0; line-height: 1; }
+.title-story { font-size: 19px; line-height: 1.5; color: #D8D5CC; }
+.title-start { font-size: 20px; font-weight: 900; color: #FFC247; letter-spacing: 0.18em; margin-top: 22px; }
+.controls { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; font-size: 14px; color: #B9BDC2; letter-spacing: 0.05em; }
+#complete-list { list-style: none; padding: 0; margin: 18px 0; font-size: 19px; line-height: 1.7; text-align: left; }
+#complete-list li::before { content: "✓  "; color: #35D3C0; font-weight: 900; }
+#fail-reason { font-size: 20px; color: #FF5A36; font-weight: 900; letter-spacing: 0.06em; }
