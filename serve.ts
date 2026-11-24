@@ -68,5 +68,7 @@ createServer((request, response) => {
   });
   createReadStream(file).pipe(response);
 }).listen(port, '127.0.0.1', () => {
+  // loopback only: the server is a local development convenience, never
+  // exposed to the network — a browser on this machine plays the game.
   console.log(`game/ is on http://localhost:${port}`);
 });
