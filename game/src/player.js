@@ -19,6 +19,8 @@ function collideCircle(pos, radius, obstacles) {
         pos.x = cx + (dx / d) * radius;
         pos.z = cz + (dz / d) * radius;
       } else {
+        // degenerate case: Mara is exactly on the box's closest point, so
+        // there is no direction to push along — push her out along +X.
         pos.x = o.maxX + radius;
       }
     }
