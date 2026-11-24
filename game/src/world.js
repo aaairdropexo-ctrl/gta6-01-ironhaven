@@ -526,13 +526,36 @@ export function createIronhavenWorld(scene, rng) {
     cab.position.set(3, 1.1, 0); cab.castShadow = true; g.add(cab);
     const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.09, 2.2, 6), mat(0x222222));
     mast.position.set(-1.2, 3.6, 0); g.add(mast);
-    // the uplink dish — teal so it reads as radio gear against the cream van
-    // and the pale sky, and low enough to stay in the defend frame.
+    // the uplink dish — a shallow parabolic bowl, not a hemisphere: the
+    // smooth half-sphere read as a green balloon, not radio gear. A real
+    // dish is a concave bowl with a feed arm and a feed horn at its focal
+    // point — those two parts are what make it read as a dish at 768px.
+    // Teal so it reads as radio gear against the cream van and the pale
+    // sky, and low enough to stay in the defend frame.
     // Round 15 (lighting-direction): the dish was a sliver at the top edge,
     // so the van read as a plain box — bigger, lower, tilted toward the
     // camera so the teal face shows.
-    const dish = new THREE.Mesh(new THREE.SphereGeometry(1.1, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), mat(0x35d3c0, 0.5));
-    dish.position.set(-1.2, 4.7, 0); dish.rotation.x = Math.PI / 2.5; g.add(dish);
+    const dishGroup = new THREE.Group();
+    const dishProfile = [];
+    for (let i = 0; i <= 8; i++) {
+      const r = (i / 8) * 1.1;
+      dishProfile.push(new THREE.Vector2(r, 0.38 * (r / 1.1) * (r / 1.1)));
+    }
+    const dish = new THREE.Mesh(
+      new THREE.LatheGeometry(dishProfile, 16),
+      new THREE.MeshStandardMaterial({ color: 0x35d3c0, roughness: 0.5, side: THREE.DoubleSide }),
+    );
+    dish.castShadow = true; dishGroup.add(dish);
+    // feed arm: a thin rod from the bowl's centre out to the focal point
+    const feedArm = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1.0, 6), mat(0x222222));
+    feedArm.position.set(0, 0.55, 0); dishGroup.add(feedArm);
+    // feed horn: the small cylinder the arm points at, dead centre
+    const feedHorn = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.12, 0.35, 8), mat(0xf4f0e7, 0.6));
+    feedHorn.position.set(0, 1.05, 0); dishGroup.add(feedHorn);
+    // rim ring so the bowl's edge reads as a hard circle, not a soft blob
+    const dishRim = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.05, 6, 24), mat(0x2e8a7a, 0.5));
+    dishRim.rotation.x = Math.PI / 2; dishRim.position.set(0, 0.38, 0); dishGroup.add(dishRim);
+    dishGroup.position.set(-1.2, 4.7, 0); dishGroup.rotation.x = Math.PI / 2.5; g.add(dishGroup);
     // live beacon on the roof by the mast — the van is broadcasting right now
     const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.18, 10, 8), new THREE.MeshBasicMaterial({ color: 0xff3b30 }));
     beacon.position.set(-1.2, 2.95, 0); g.add(beacon);
